@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@tsconfig/node18-strictest-esm': ^1.0.1
   '@types/node': ^18.11.17
+  base64url: 3.0.1
   prettier: ^2.8.1
   ts-mixer: ^6.0.2
   typescript: ^4.9.4
@@ -10,6 +11,7 @@ specifiers:
   vitest: ^0.26.2
 
 dependencies:
+  base64url: 3.0.1
   ts-mixer: 6.0.2
 
 devDependencies:
@@ -252,6 +254,11 @@ packages:
   /assertion-error/1.1.0:
     resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
     dev: true
+
+  /base64url/3.0.1:
+    resolution: {integrity: sha512-ir1UPr3dkwexU7FdV8qBBbNDRUhMmIekYMFZfi+C/sLNnRESKPl23nB9b2pltqfOQNnGzsDdId90AEtG5tCx4A==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /buffer-from/1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}

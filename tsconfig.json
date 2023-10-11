@@ -2,7 +2,9 @@
   "extends": "@tsconfig/node18-strictest-esm/tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "target": "es2015",
+    "ignoreDeprecations": "5.0"
   },
   "include": ["src"]
 }

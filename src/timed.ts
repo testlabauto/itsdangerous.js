@@ -1,6 +1,6 @@
 import assert from 'node:assert';
 import {hasMixin} from 'ts-mixer';
-import {base64Decode, base64Encode, wantBuffer} from './encoding.js';
+import {base64Decode, wantBuffer} from './encoding.js';
 import {BadSignature, BadTimeSignature, SignatureExpired} from './errors.js';
 import {Serializer} from './serializer.js';
 import {Signer} from './signer.js';
@@ -99,7 +99,7 @@ export class TimestampSigner extends Signer {
       throw new BadTimeSignature('Malformed timestamp', value);
     }
     if (maxAge != null) {
-      const age = this.getTimestamp() - timestampInt;
+      const age = parseInt(this.getTimestamp()) - timestampInt;
       if (age > maxAge) {
         throw new SignatureExpired(
           `Signature age ${age} > ${maxAge} seconds`,
