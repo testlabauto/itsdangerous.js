@@ -6,6 +6,7 @@ import {Serializer} from './serializer.js';
 import {Signer} from './signer.js';
 import type {StringBuffer} from './types.js';
 import {rsplit} from './utils.js';
+import base64url from 'base64url';
 
 /**
  * Works like the regular `Signer` but also records the time of the signing and can be used to expire signatures. The
@@ -16,7 +17,12 @@ export class TimestampSigner extends Signer {
    * Returns the current timestamp. The function must return an integer.
    */
   getTimestamp(): number {
-    return Math.floor(Date.now() / 1000);
+    const time = Math.floor((new Date()).getTime() / 1000);
+    const timeBuffer = Buffer.alloc(8);
+    timeBuffer.writeBigUInt64BE(BigInt(time), 0);
+    const timeBytes = timeBuffer.slice(timeBuffer.findIndex(b => b !== 0));
+    const base64Url = base64url.encode(timeBytes).replace(/=+$/, '');
+    return base64Url;
   }
 
   /**
@@ -35,7 +41,7 @@ export class TimestampSigner extends Signer {
    */
   override sign(value: StringBuffer): Buffer {
     value = wantBuffer(value);
-    const timestamp = base64Encode(this.getTimestamp().toString());
+    const timestamp = wantBuffer(this.getTimestamp());
     const sep = wantBuffer(this.sep);
     value = Buffer.concat([value, sep, timestamp]);
     return Buffer.concat([value, sep, this.getSignature(value)]);

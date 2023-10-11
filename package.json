@@ -26,6 +26,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "base64url": "3.0.1",
     "ts-mixer": "^6.0.2"
   },
   "devDependencies": {
