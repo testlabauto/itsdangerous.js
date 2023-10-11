@@ -16,7 +16,7 @@ export class TimestampSigner extends Signer {
   /**
    * Returns the current timestamp. The function must return an integer.
    */
-  getTimestamp(): number {
+  getTimestamp(): string {
     const time = Math.floor((new Date()).getTime() / 1000);
     const timeBuffer = Buffer.alloc(8);
     timeBuffer.writeBigUInt64BE(BigInt(time), 0);
